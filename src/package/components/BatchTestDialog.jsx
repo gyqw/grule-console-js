@@ -5,6 +5,9 @@ import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
 import CommonDialog from '../../components/dialog/component/CommonDialog.jsx';
 import * as event from '../event.js';
+import RuleFlowDesigner from "../../flow/RuleFlowDesigner";
+import * as action from '../action.js';
+import {Event} from "flowdesigner";
 
 export default class BatchTestDialog extends Component {
     constructor(props) {
@@ -29,8 +32,7 @@ export default class BatchTestDialog extends Component {
     render() {
         const formId = 'batch_test_excel_form';
         let body = (<div>
-            <form id={formId} method="post" action={window._server + '/packageeditor/doBatchTest'}>
-            </form>
+            <div id="div-flow"></div>
         </div>);
 
         const buttons = [
@@ -39,7 +41,17 @@ export default class BatchTestDialog extends Component {
                 className: 'btn btn-danger',
                 icon: 'glyphicon glyphicon-flash',
                 click: function () {
-                    document.getElementById(formId).submit();
+                    action.doBatchTest(this.files, function (res) {
+                        const containerId = 'div-flow';
+
+                        // $('#' + containerId).html('');
+                        // const designer = new RuleFlowDesigner(containerId);
+                        // designer.fromJson(res);
+                        // designer.buildDesigner();
+                        // $('.fd-toolbar').hide();
+                        // $('.fd-property-panel').hide();
+                        // Event.eventEmitter.emit(Event.CANVAS_SELECTED);
+                    });
                 }
             }
         ];
