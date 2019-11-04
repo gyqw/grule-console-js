@@ -107,8 +107,6 @@ export default class FlowDialog extends Component {
                                     $('.fd-property-panel').hide();
                                     $('.fd-node-toolbar').hide();
 
-                                    console.log(flowJson.nodes);
-                                    console.log(testResult);
                                     for (const index in flowJson.nodes) {
                                         const num = testResult[flowJson.nodes[index].name];
                                         if (num != null) {

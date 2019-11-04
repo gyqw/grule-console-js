@@ -41,10 +41,7 @@ export default class ImportExcelDataDialog extends Component {
                     try {
                         let jsonData = $.parseJSON($(e.target).contents().text());
                         $(ReactDOM.findDOMNode(this)).modal('hide');
-                        event.eventEmitter.emit(event.OPEN_BATCH_TEST_DIALOG, {
-                            files: this.state.files,
-                            data: jsonData
-                        });
+                        bootbox.alert('导入Excel成功');
                     } catch (error) {
                         bootbox.alert('导入Excel失败');
                     }
