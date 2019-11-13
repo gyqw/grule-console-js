@@ -17,6 +17,35 @@ import DecisionTool from "../../flow/DecisionTool";
 import ForkTool from "../../flow/ForkTool";
 import JoinTool from "../../flow/JoinTool";
 
+function downloadSvg(div) {
+    var svgXml = $(div).html();
+
+    var image = new Image();
+    // 给图片对象写入base64编码的svg流
+    image.src = 'data:image/svg+xml;base64,' + window.btoa(unescape(encodeURIComponent(svgXml)));
+
+    image.onload = function () {
+        // 准备空画布
+        var canvas = document.createElement('canvas');
+        canvas.width = $(div + ' svg').width();
+        canvas.height = $(div + ' svg').height();
+
+        // 取得画布的2d绘图上下文
+        var context = canvas.getContext('2d');
+        context.fillStyle = '#fff';
+        context.fillRect(0, 0, canvas.width, canvas.height);
+        context.drawImage(image, 0, 0);
+
+        var a = document.createElement('a');
+        // 将画布内的信息导出为png图片数据
+        a.href = canvas.toDataURL('image/png');
+        // 设定下载名称
+        a.download = "flowpic";
+        // 点击触发下载
+        a.click();
+    }
+}
+
 export default class FlowDialog extends Component {
     constructor(props) {
         super(props);
@@ -104,7 +133,7 @@ export default class FlowDialog extends Component {
                                     designer.buildDesigner();
 
                                     $('.fd-toolbar').hide();
-                                    $('.fd-property-panel').hide();
+                                    $('.fd-property-panel').remove();
                                     $('.fd-node-toolbar').hide();
 
                                     for (const index in flowJson.nodes) {
@@ -114,7 +143,12 @@ export default class FlowDialog extends Component {
                                         }
                                     }
                                     designer.fromJson(flowJson);
+
+                                    // 下载excel
                                     document.getElementById(formId).submit();
+
+                                    // 下载图片
+                                    downloadSvg('.fd-canvas-container')
                                 },
                                 error: function () {
                                     alert(`加载决策流${files}失败！`);
