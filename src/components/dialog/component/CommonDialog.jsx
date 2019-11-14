@@ -27,7 +27,7 @@ export default class CommonDialog extends Component {
         this.props.buttons.forEach((btn, index) => {
             buttons.push(<button type="button" key={index} className={btn.className} onClick={(e) => {
                 btn.click(this.props.dispatch);
-            }}><i className={btn.icon}></i> {btn.name}</button>)
+            }}><i className={btn.icon}/> {btn.name}</button>)
         });
         const large = this.props.large;
         const className = 'modal-dialog' + (large ? ' modal-lg' : '');

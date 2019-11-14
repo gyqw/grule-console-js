@@ -37,8 +37,27 @@ import {MsgBox} from 'flowdesigner';
         this.append(toolbar);
         var self = this;
         $("#addRuleButton").click(function () {
-            var rule = _addRule();
-            rule.initTopJoin();
+            var ruleKey = prompt("规则编号", "");
+            if (ruleKey == null || ruleKey === '') {
+                var rule = _addRule();
+                rule.initTopJoin();
+            } else {
+                var url = window._server + '/common/findRuleByKey';
+                var projectName = file.split('/')[1];
+
+                $.ajax({
+                    url: url,
+                    type: 'POST',
+                    data: {
+                        ruleKey: ruleKey,
+                        projectName: projectName
+                    },
+                    success: function (res) {
+                        var rule = _addRule(res[0]);
+                        rule.initTopJoin();
+                    }
+                })
+            }
         });
         $("#addLoopRuleButton").click(function () {
             var rule = _addLoopRule();
@@ -202,7 +221,7 @@ import {MsgBox} from 'flowdesigner';
             self.rules.push(rule);
             window._setDirty();
             return rule;
-        };
+        }
 
         function _loadRulesetFileData() {
             var url = window._server + '/common/loadXml';

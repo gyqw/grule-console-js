@@ -303,6 +303,9 @@ export function buildType(fileType) {
         case 'rs.xml':
             type = '向导式决策集';
             break;
+        case 'rsl.xml':
+            type = '向导式决策库';
+            break;
         case 'ul':
             type = '脚本式决策集';
             break;
@@ -488,6 +491,13 @@ function buildData(data, level) {
                     icon: Styles.frameStyle.getUlIcon(),
                     click: function () {
                         event.eventEmitter.emit(event.OPEN_CREATE_FILE_DIALOG, {fileType: 'ul', nodeData: data})
+                    }
+                },
+                {
+                    name: '添加向导式决策库',
+                    icon: Styles.frameStyle.getRuleIcon(),
+                    click: function () {
+                        event.eventEmitter.emit(event.OPEN_CREATE_FILE_DIALOG, {fileType: 'rsl.xml', nodeData: data})
                     }
                 }
             ];
@@ -733,6 +743,13 @@ function buildFullContextMenu(isFolder, folderType) {
                 icon: Styles.frameStyle.getRuleIcon(),
                 click: function (data, dispatch) {
                     event.eventEmitter.emit(event.OPEN_CREATE_FILE_DIALOG, {fileType: 'rs.xml', nodeData: data})
+                }
+            },
+            {
+                name: '添加向导式决策库',
+                icon: Styles.frameStyle.getRuleIcon(),
+                click: function (data, dispatch) {
+                    event.eventEmitter.emit(event.OPEN_CREATE_FILE_DIALOG, {fileType: 'rsl.xml', nodeData: data})
                 }
             },
             {
