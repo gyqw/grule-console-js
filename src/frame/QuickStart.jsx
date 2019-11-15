@@ -17,7 +17,7 @@ export default class QuickStart extends Component {
                         fontSize: '18px',
                         color: '#7b7a7a'
                     }}>
-                        <td colSpan="3">主要功能</td>
+                        <td colSpan="2">主要功能</td>
                     </tr>
                     </thead>
                     <tbody>

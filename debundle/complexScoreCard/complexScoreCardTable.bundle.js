@@ -59,7 +59,6 @@
     n();
 
     // 反编译
-
     var fs = require("fs");
 
     for (var func in t) {
