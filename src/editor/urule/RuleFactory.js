@@ -53,8 +53,12 @@ import {MsgBox} from 'flowdesigner';
                         projectName: projectName
                     },
                     success: function (res) {
-                        var rule = _addRule(res[0]);
-                        // rule.initTopJoin();
+                        if (res != null && res.length > 0) {
+                            _addRule(res[0]);
+                        } else {
+                            var rule = _addRule();
+                            rule.initTopJoin();
+                        }
                     }
                 })
             }
