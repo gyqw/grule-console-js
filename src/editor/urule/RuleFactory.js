@@ -54,7 +54,7 @@ import {MsgBox} from 'flowdesigner';
                     },
                     success: function (res) {
                         var rule = _addRule(res[0]);
-                        rule.initTopJoin();
+                        // rule.initTopJoin();
                     }
                 })
             }

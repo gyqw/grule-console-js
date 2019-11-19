@@ -11,14 +11,8 @@ var func355 = function (t, e, n) {
         return t && t.__esModule ? t : {default: t}
     }
 
-    window._setDirty = function () {
-        window._dirty || (window._dirty = !0, $("#saveButton").html("<i class='rf rf-save'></i> *保存"), $("#saveButton").prop("disabled", !1), $("#saveButtonNewVersion").html("<i class='rf rf-savenewversion'></i> *保存新版本"), $("#saveButtonNewVersion").prop("disabled", !1))
-    };
-    window.cancelDirty = function () {
-        window._dirty && (window._dirty = !1, $("#saveButton").html("<i class='rf rf-save'></i> 保存"), $("#saveButton").prop("disabled", !0), $("#saveButtonNewVersion").html("<i class='rf rf-savenewversion'></i> 保存新版本"), $("#saveButtonNewVersion").prop("disabled", !0))
-    };
-
     $(document).ready(function () {
-        i.default.render(r.default.createElement(o.default, null), document.getElementById("dialogContainer")), new a.default($("#container"))
+        i.default.render(r.default.createElement(o.default, null), document.getElementById("dialogContainer"));
+        new a.default($("#container"));
     })
 };

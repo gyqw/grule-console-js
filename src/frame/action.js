@@ -49,6 +49,8 @@ export function createNewFile(newFileName, fileType, parentNodeData) {
                 event.eventEmitter.emit(event.CLOSE_CREATE_FILE_DIALOG);
             },
             error: function (response) {
+                componentEvent.eventEmitter.emit(componentEvent.HIDE_LOADING);
+
                 if (response.status === 401) {
                     bootbox.alert("权限不足，不能进行此操作.");
                 } else {
@@ -112,6 +114,8 @@ export function createNewProject(newProjectName, parentNodeData) {
                 componentEvent.eventEmitter.emit(componentEvent.HIDE_LOADING);
             },
             error: function (response) {
+                componentEvent.eventEmitter.emit(componentEvent.HIDE_LOADING);
+
                 if (response.status === 401) {
                     bootbox.alert("权限不足，不能进行此操作.");
                 } else {
@@ -147,6 +151,8 @@ export function createNewFolder(newFolderName, parentNodeData) {
                 componentEvent.eventEmitter.emit(componentEvent.HIDE_LOADING);
             },
             error: function (response) {
+                componentEvent.eventEmitter.emit(componentEvent.HIDE_LOADING);
+
                 if (response.status === 401) {
                     bootbox.alert("权限不足，不能进行此操作.");
                 } else {
@@ -268,6 +274,18 @@ export function loadData(classify, projectName, types, searchFileName) {
                 buildData(rootFile, 1);
                 dispatch({data: rootFile, type: LOAD_END});
                 componentEvent.eventEmitter.emit(componentEvent.HIDE_LOADING);
+
+                // 控制所有节点显示
+                const $span = $('#node-' + rootFile.id).parent("li");
+                if (searchFileName == null || searchFileName === '') {
+                    var $liChildren = $span.find('ul > li > ul > li');
+                    $liChildren.hide('fast');
+                    $span.find('ul > li').find('i:first').addClass('rf-plus').removeClass('rf-minus');
+                } else {
+                    var $liChildren = $span.find('li');
+                    $liChildren.show('fast');
+                    $span.find('ul > li').find('i:first').addClass('rf-minus').removeClass('rf-plus');
+                }
             },
             error: function (response) {
                 componentEvent.eventEmitter.emit(componentEvent.HIDE_LOADING);
