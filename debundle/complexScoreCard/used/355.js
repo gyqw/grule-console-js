@@ -12,7 +12,6 @@ var func355 = function (t, e, n) {
     }
 
     $(document).ready(function () {
-        i.default.render(r.default.createElement(o.default, null), document.getElementById("dialogContainer"));
         new a.default($("#container"));
     })
 };
