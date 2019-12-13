@@ -1,6 +1,10 @@
 import HeaderRow from "./HeaderRow";
 import RowAction from "./RowAction";
+import TableAction from '../scorecard/TableAction';
+import M347 from "./M347";
+import {getParameter} from '../Utils.js';
 
+// 354.js
 export default class ComplexScoreCardTable {
     constructor(container) {
         this.id = 0;
@@ -108,7 +112,7 @@ export default class ComplexScoreCardTable {
         this.loadFile(this._buildLoadDataFunction());
         var b = $('<div style="padding-left:10px"></div>');
         t.append(b);
-        this.tableAction = new h.default(b, !0)
+        this.tableAction = new TableAction(b, true)
     }
 
     resetState() {
@@ -116,20 +120,23 @@ export default class ComplexScoreCardTable {
     }
 
     _buildLoadDataFunction() {
-        var t = this, e = new RowAction(this);
+        var _this = this;
+        var e = new RowAction(this);
         return function (n) {
-            t.tableAction.initData(n);
+            _this.tableAction.initData(n);
             var r = !0, i = !1, o = void 0;
             try {
                 for (var a, s = n.columns[Symbol.iterator](); !(r = (a = s.next()).done); r = !0) {
-                    var c = a.value, f = c.type;
+                    var c = a.value;
+                    var f = c.type;
                     if (e.setWidth(c.width), "Criteria" === f) {
-                        var u = t.addConditionColumn(e);
-                        t._findHeaderCell(u, !1).updateLabel(c)
-                    } else "Score" === f ? (e.setActionType(1), t.addActionColumn(e)) : "Custom" === f && (e.setActionType(2), e.setCustomActionHeaderLabel(c.customLabel), t.addActionColumn(e))
+                        var u = _this.addConditionColumn(e);
+                        _this._findHeaderCell(u, !1).updateLabel(c)
+                    } else "Score" === f ? (e.setActionType(1), _this.addActionColumn(e)) : "Custom" === f && (e.setActionType(2), e.setCustomActionHeaderLabel(c.customLabel), _this.addActionColumn(e))
                 }
             } catch (t) {
-                i = !0, o = t
+                i = !0;
+                o = t;
             } finally {
                 try {
                     !r && s.return && s.return()
@@ -141,11 +148,14 @@ export default class ComplexScoreCardTable {
             try {
                 for (var b, g = n.rows[Symbol.iterator](); !(h = (b = g.next()).done); h = !0) {
                     b.value;
-                    var y = t._findRowCells(l, n.cellMap);
-                    e.setRowCells(y), t.addRow(e), l++
+                    var y = _this._findRowCells(l, n.cellMap);
+                    e.setRowCells(y);
+                    _this.addRow(e);
+                    l++;
                 }
             } catch (t) {
-                d = !0, p = t
+                d = !0;
+                p = t;
             } finally {
                 try {
                     !h && g.return && g.return()
@@ -153,7 +163,9 @@ export default class ComplexScoreCardTable {
                     if (d) throw p
                 }
             }
-            window._VariableValueArray.push(t), window._ParameterValueArray.push(t), window.cancelDirty()
+            window._VariableValueArray.push(_this);
+            window._ParameterValueArray.push(_this);
+            window.cancelDirty();
         }
 
     }
@@ -271,9 +283,10 @@ export default class ComplexScoreCardTable {
     }
 
     loadFile(t) {
-        var e = this, n = (0, f.getParameter)("file"),
-            r = ((0, f.getParameter)("version"), window._server + "/common/loadXml"),
-            i = (0, f.getParameter)("doImport");
+        var e = this;
+        var n = getParameter("file");
+        var r = (getParameter("version"), window._server + "/common/loadXml");
+        var i = getParameter("doImport");
         i && i.length > 1 && (r += "?doImport=true"), $.ajax({
             url: r,
             type: "POST",
@@ -312,13 +325,21 @@ export default class ComplexScoreCardTable {
                         case"Parameter":
                             parameterLibraries.push(r)
                     }
-                }), refreshActionLibraries(), refreshConstantLibraries(), refreshVariableLibraries(), refreshParameterLibraries(), refreshFunctionLibraries(), t && t(r)
+                });
+                refreshActionLibraries();
+                refreshConstantLibraries();
+                refreshVariableLibraries();
+                refreshParameterLibraries();
+                refreshFunctionLibraries();
+                t && t(r)
             }
         })
     }
 
     addProperty(t) {
-        this.propertyContainer.append(t.getContainer()), this.properties.push(t), window._setDirty()
+        this.propertyContainer.append(t.getContainer());
+        this.properties.push(t);
+        window._setDirty();
     }
 
     addRow(t) {
@@ -331,7 +352,7 @@ export default class ComplexScoreCardTable {
     }
 
     addConditionColumn(t) {
-        var e = new a.default(t);
+        var e = new M347(t);
         if (t.refHeaderCell) {
             var n = t.refHeaderCellIndex;
             t.before ? this.conditionColumns.splice(n, 0, e) : this.conditionColumns.splice(n + 1, 0, e)

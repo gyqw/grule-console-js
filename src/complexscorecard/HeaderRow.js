@@ -1,14 +1,18 @@
+import M352 from "./M352";
+
+// 353.js
 export default class HeaderRow {
     constructor(t) {
         // todo
         // t.tr.css("background", "#f1f1f1");
-        t.conditionHeaders = [];
-        t.actionHeaders = [];
-        return t;
+        this.conditionHeaders = [];
+        this.actionHeaders = [];
+        return this;
     }
 
-    addConditionHeader() {
-        var n = t.complexTable, r = new o.default(n, e);
+    addConditionHeader(t, e) {
+        var n = t.complexTable;
+        var r = new M352(n);
         t.width && (e.width = t.width, r.td.css("width", t.width + "px"));
         var i = t.refHeaderCell;
         if (i) {

@@ -41,6 +41,7 @@ import '../editor/urule/RuleProperty.js';
 import KnowledgeTreeDialog from "../components/dialog/component/KnowledgeTreeDialog.jsx";
 import ComplexScoreCardTable from "./ComplexScoreCardTable";
 
+// 355.js
 $(document).ready(function (e) {
     const saveButton = $("#saveButton");
     const saveButtonNewVersion = $("#saveButtonNewVersion");

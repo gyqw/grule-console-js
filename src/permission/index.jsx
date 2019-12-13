@@ -7,14 +7,14 @@ import '../css/iconfont.css';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {Provider} from 'react-redux';
-import {createStore,applyMiddleware} from 'redux';
+import {applyMiddleware, createStore} from 'redux';
 import thunk from 'redux-thunk';
 import PermissionConfigEditor from './components/PermissionConfigEditor.jsx';
 import reducer from './reducer.js';
 import * as action from './action.js';
 
 $(document).ready(function () {
-    const store=createStore(reducer,applyMiddleware(thunk));
+    const store = createStore(reducer, applyMiddleware(thunk));
     store.dispatch(action.loadMasterData());
     ReactDOM.render(
         <Provider store={store}>

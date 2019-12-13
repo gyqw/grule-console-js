@@ -1,3 +1,4 @@
+// 281.js
 export default class RowAction {
     constructor(t) {
         this.complexTable = t;
@@ -26,7 +27,8 @@ export default class RowAction {
                 }
             }
         } catch (t) {
-            o = !0, a = t
+            o = !0;
+            a = t;
         } finally {
             try {
                 !i && c.return && c.return()

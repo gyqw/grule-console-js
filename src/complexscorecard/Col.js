@@ -1,3 +1,4 @@
+// 319.js
 export default class Col {
     buildColResizeTrigger() {
         this.resizeTrigger = $(`<span style="cursor: col-resize;width: 3px;height: 20px;float: right;border: solid 2px transparent;">&nbsp;</span>`);
