@@ -1,7 +1,6 @@
 /**
  * Created by Jacky.gao on 2016/7/27.
  */
-
 window.iframe_id_ = 1;
 
 export function nextIFrameId() {
@@ -56,6 +55,46 @@ export function formatDate(date, format) {
         format = format.replace(RegExp.$1, (date.getFullYear() + "").substr(4 - RegExp.$1.length));
     for (var k in o)
         if (new RegExp("(" + k + ")").test(format))
-            format = format.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
+            format = format.replace(RegExp.$1, (RegExp.$1.length === 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
     return format;
+}
+
+export function saveNewVersion(url, postData, cb) {
+    let options = {
+        title: '保存新版本',
+        message: `
+            <form class='bootbox-form'>
+                <div style="margin-bottom: 15px;">
+                    <input id='version-comment-input' class='bootbox-input bootbox-input-text form-control' autocomplete=off placeholder='版本描述' />            
+                </div>
+                <div style="margin-bottom: 15px;">
+                    <textarea id='before-comment-textarea' class='bootbox-input bootbox-input-textarea form-control' placeholder='变更前'/>
+                </div>
+                <div>
+                    <textarea id='after-comment-textarea' class='bootbox-input bootbox-input-textarea form-control' placeholder='变更后'/>   
+                </div>
+            </form>
+        `,
+        buttons: {
+            save: {
+                label: '保存',
+                className: 'btn-primary',
+                callback: function () {
+                    const versionComment = $('#version-comment-input').val();
+                    const commentBefore = $('#before-comment-textarea').text();
+                    const commentAfter = $('#after-comment-textarea').text();
+
+                    if (!versionComment) {
+                        return;
+                    }
+
+                    postData.versionComment = versionComment;
+                    ajaxSave(url, postData, function () {
+                        cb();
+                    })
+                }
+            }
+        }
+    };
+    bootbox.dialog(options);
 }

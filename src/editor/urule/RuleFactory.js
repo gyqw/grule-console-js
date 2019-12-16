@@ -1,5 +1,6 @@
 import {ajaxSave, getParameter} from '../../Utils.js';
 import {MsgBox} from 'flowdesigner';
+import {saveNewVersion} from "../../Utils";
 
 (function ($) {
     $.fn.urule = function () {
@@ -12,19 +13,19 @@ import {MsgBox} from 'flowdesigner';
             return;
         }
         var saveButton = '<div class="btn-group btn-group-sm navbar-btn" style="margin-top:0;margin-bottom: 0" role="group" aria-label="...">' +
-            '<button id="saveButton" type="button" class="btn btn-default navbar-btn" ><i class="icon-save"></i> 保存</button>' +
-            '<button id="saveButtonNewVersion" type="button" class="btn btn-default navbar-btn" ><i class="icon-save"></i> 保存新版本</button>' +
+            '<button id="saveButton" type="button" class="btn btn-default navbar-btn" ><i class="icon-save"/> 保存</button>' +
+            '<button id="saveButtonNewVersion" type="button" class="btn btn-default navbar-btn" ><i class="icon-save"/> 保存新版本</button>' +
             '</div>';
         var toolbarHtml = `<nav class="navbar navbar-default" style="margin: 5px">
         	<div style="margin-left:5px;margin-top:0;margin-bottom: 0">
 	            <div>
-	                <button id="addRuleButton" type="button" class="btn btn-default btn-sm navbar-btn"><i class="glyphicon glyphicon-plus-sign"></i> 添加规则</button>
-	                <button id="addLoopRuleButton" type="button" class="btn btn-default btn-sm navbar-btn"><i class="glyphicon glyphicon-plus"></i> 添加循环规则</button>
+	                <button id="addRuleButton" type="button" class="btn btn-default btn-sm navbar-btn"><i class="glyphicon glyphicon-plus-sign"/> 添加规则</button>
+	                <button id="addLoopRuleButton" type="button" class="btn btn-default btn-sm navbar-btn"><i class="glyphicon glyphicon-plus"/> 添加循环规则</button>
 	                <div class="btn-group btn-group-sm navbar-btn" style="margin-left:5px;margin-top:0;margin-bottom: 0" role="group" aria-label="...">
-	                    <button id="configVarButton" type="button" class="btn btn-default"><i class="rf rf-variable"></i> 变量库</button>
-	                    <button id="configConstantsButton" type="button" class="btn btn-default"><i class="rf rf-constant"></i> 常量库</button>
-	                    <button id="configActionButton" type="button" class="btn btn-default"><i class="rf rf-action"></i> 动作库</button>
-	                    <button id="configParameterButton" type="button" class="btn btn-default"><i class="rf rf-parameter"></i> 参数库</button>
+	                    <button id="configVarButton" type="button" class="btn btn-default"><i class="rf rf-variable"/> 变量库</button>
+	                    <button id="configConstantsButton" type="button" class="btn btn-default"><i class="rf rf-constant"/> 常量库</button>
+	                    <button id="configActionButton" type="button" class="btn btn-default"><i class="rf rf-action"/> 动作库</button>
+	                    <button id="configParameterButton" type="button" class="btn btn-default"><i class="rf rf-parameter"/> 参数库</button>
 	                </div>
 	                ${saveButton}
 	            </div>
@@ -36,6 +37,7 @@ import {MsgBox} from 'flowdesigner';
         });
         this.append(toolbar);
         var self = this;
+
         $("#addRuleButton").click(function () {
             var ruleKey = prompt("规则编号", "");
             if (ruleKey == null || ruleKey === '') {
@@ -63,6 +65,7 @@ import {MsgBox} from 'flowdesigner';
                 })
             }
         });
+
         $("#addLoopRuleButton").click(function () {
             var rule = _addLoopRule();
             rule.initTopJoin();
@@ -99,9 +102,11 @@ import {MsgBox} from 'flowdesigner';
         $("#saveButton").click(function () {
             save(false);
         });
+
         $("#saveButtonNewVersion").click(function () {
             save(true);
         });
+
         $("#saveButton").addClass("disabled");
         $("#saveButtonNewVersion").addClass("disabled");
 
@@ -167,15 +172,10 @@ import {MsgBox} from 'flowdesigner';
             let postData = {content: xml, file, newVersion};
             const url = window._server + '/common/saveFile';
             if (newVersion) {
-                bootbox.prompt("请输入新版本描述.", function (versionComment) {
-                    if (!versionComment) {
-                        return;
-                    }
-                    postData.versionComment = versionComment;
-                    ajaxSave(url, postData, function () {
-                        cancelDirty();
-                        window.location.reload();
-                    })
+                // todo
+                saveNewVersion(url, postData, function () {
+                    cancelDirty();
+                    window.location.reload();
                 });
             } else {
                 ajaxSave(url, postData, function () {
@@ -207,7 +207,7 @@ import {MsgBox} from 'flowdesigner';
             $("#saveButton").addClass("disabled");
             $("#saveButtonNewVersion").html("<i class='rf rf-savenewversion'></i> 保存新版本");
             $("#saveButtonNewVersion").addClass("disabled");
-        };
+        }
 
         function _addRule(data) {
             var ruleContainer = $("<div class='well' style='margin:5px;padding:8px;background-color: #fdfdfd'></div>");
@@ -216,7 +216,7 @@ import {MsgBox} from 'flowdesigner';
             self.rules.push(rule);
             window._setDirty();
             return rule;
-        };
+        }
 
         function _addLoopRule(data) {
             var ruleContainer = $("<div class='well' style='margin:5px;padding:8px;border-color:#337AB7;background-color: #fdfdfd'></div>");

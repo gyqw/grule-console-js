@@ -60,7 +60,7 @@ class SelectMethodDialog extends Component{
             <CommonDialog title="选择方法" body={body} buttons={buttons}/>
         );
     }
-};
+}
 
 function select(state){
     return {data:state.methodList.data || []};
