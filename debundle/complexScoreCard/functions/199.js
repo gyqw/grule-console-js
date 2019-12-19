@@ -1,4 +1,4 @@
-var func207 = function (t, e, n) {
+var func199 = function (t, e, n) {
     "use strict";
     Object.defineProperty(e, "__esModule", {value: !0});
     var r = function () {
@@ -12,9 +12,7 @@ var func207 = function (t, e, n) {
         return function (e, n, r) {
             return n && t(e.prototype, n), r && t(e, r), e
         }
-    }();
-    n(203), n(47);
-    var i = s(n(196)), o = n(5), a = s(o);
+    }(), i = n(5), o = s(i), a = s(n(200));
 
     function s(t) {
         return t && t.__esModule ? t : {default: t}
@@ -40,22 +38,17 @@ var func207 = function (t, e, n) {
                     configurable: !0
                 }
             }), e && (Object.setPrototypeOf ? Object.setPrototypeOf(t, e) : t.__proto__ = e)
-        }(e, o.Component), r(e, [{
+        }(e, i.Component), r(e, [{
             key: "render", value: function () {
-                var t = this.props, e = t.data, n = t.selectDir;
-                return e ? (function t(e, n) {
-                    e._level = n++;
-                    var r = e.children;
-                    r && r.forEach(function (e, r) {
-                        t(e, n)
-                    })
-                }(e, 1), a.default.createElement("ul", {style: {paddingLeft: "20px"}}, a.default.createElement(i.default, {
-                    data: e,
-                    selectDir: n,
-                    expandLevel: this.props.expandLevel
-                }))) : a.default.createElement("ul", null)
+                var t = this.props, e = t.items, n = t.data, r = t.dispatch, i = t.menuId, s = [];
+                return e.forEach(function (t, e) {
+                    s.push(o.default.createElement(a.default, {item: t, key: e, data: n, dispatch: r}))
+                }), o.default.createElement("div", {id: i}, o.default.createElement("ul", {
+                    className: "dropdown-menu",
+                    style: {color: "rgb(11, 54, 106)"}
+                }, s))
             }
         }]), e
     }();
-    e.default = c, c.defaultProps = {expandLevel: 3}
+    e.default = c
 }

@@ -1,4 +1,4 @@
-var func207 = function (t, e, n) {
+var func200 = function (t, e, n) {
     "use strict";
     Object.defineProperty(e, "__esModule", {value: !0});
     var r = function () {
@@ -12,22 +12,20 @@ var func207 = function (t, e, n) {
         return function (e, n, r) {
             return n && t(e.prototype, n), r && t(e, r), e
         }
-    }();
-    n(203), n(47);
-    var i = s(n(196)), o = n(5), a = s(o);
+    }(), i = n(5), o = s(i), a = s(n(7));
 
     function s(t) {
         return t && t.__esModule ? t : {default: t}
     }
 
     var c = function (t) {
-        function e() {
+        function e(t) {
             return function (t, e) {
                 if (!(t instanceof e)) throw new TypeError("Cannot call a class as a function")
             }(this, e), function (t, e) {
                 if (!t) throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
                 return !e || "object" != typeof e && "function" != typeof e ? t : e
-            }(this, (e.__proto__ || Object.getPrototypeOf(e)).apply(this, arguments))
+            }(this, (e.__proto__ || Object.getPrototypeOf(e)).call(this, t))
         }
 
         return function (t, e) {
@@ -40,22 +38,25 @@ var func207 = function (t, e, n) {
                     configurable: !0
                 }
             }), e && (Object.setPrototypeOf ? Object.setPrototypeOf(t, e) : t.__proto__ = e)
-        }(e, o.Component), r(e, [{
-            key: "render", value: function () {
-                var t = this.props, e = t.data, n = t.selectDir;
-                return e ? (function t(e, n) {
-                    e._level = n++;
-                    var r = e.children;
-                    r && r.forEach(function (e, r) {
-                        t(e, n)
+        }(e, i.Component), r(e, [{
+            key: "componentDidMount", value: function () {
+                var t = this.props, e = t.item, n = t.data, r = t.dispatch;
+                if (e.click) {
+                    var i = a.default.findDOMNode(this);
+                    $(i).click(function (t) {
+                        e.click(n, r)
                     })
-                }(e, 1), a.default.createElement("ul", {style: {paddingLeft: "20px"}}, a.default.createElement(i.default, {
-                    data: e,
-                    selectDir: n,
-                    expandLevel: this.props.expandLevel
-                }))) : a.default.createElement("ul", null)
+                }
+            }
+        }, {
+            key: "render", value: function () {
+                var t = this.props.item;
+                return o.default.createElement("li", null, o.default.createElement("a", {href: "###"}, o.default.createElement("i", {
+                    className: t.icon,
+                    style: {color: "#00A0E8"}
+                }), " ", t.name))
             }
         }]), e
     }();
-    e.default = c, c.defaultProps = {expandLevel: 3}
+    e.default = c
 }

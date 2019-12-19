@@ -18,7 +18,9 @@ export default class HeaderRow {
         if (i) {
             var a = n.headerRow.conditionHeaders.indexOf(i), s = i.td;
             t.before ? (s.before(r.td), this.conditionHeaders.splice(a, 0, r)) : (s.after(r.td), this.conditionHeaders.splice(a + 1, 0, r))
-        } else this.tr.append(r.td), this.conditionHeaders.push(r)
+        } else {
+            this.tr.append(r.td), this.conditionHeaders.push(r);
+        }
     }
 
     addActionHeader(t, e) {

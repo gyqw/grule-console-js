@@ -81,14 +81,17 @@ export function saveNewVersion(url, postData, cb) {
                 className: 'btn-primary',
                 callback: function () {
                     const versionComment = $('#version-comment-input').val();
-                    const commentBefore = $('#before-comment-textarea').text();
-                    const commentAfter = $('#after-comment-textarea').text();
+                    const beforeComment = $('#before-comment-textarea').val();
+                    const afterComment = $('#after-comment-textarea').val();
 
                     if (!versionComment) {
                         return;
                     }
 
                     postData.versionComment = versionComment;
+                    postData.beforeComment = beforeComment;
+                    postData.afterComment = afterComment;
+
                     ajaxSave(url, postData, function () {
                         cb();
                     })

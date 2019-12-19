@@ -62,8 +62,10 @@
     var fs = require("fs");
 
     for (var func in t) {
+        console.log(111)
         fs.writeFile('./debundle/complexScoreCard/functions/' + func + '.js', 'var func'+func + ' = ' + t[func].toString(), function (err) {
         });
+        console.log(222)
     }
 }([
 
@@ -15096,7 +15098,7 @@ function (t, e, n) {
                 })
             }
         }]), e
-    }();
+    }();i = s(n(319)), o = s(n(281)), a = n(27)
     e.default = c
 }, function (t, e, n) {
     "use strict";

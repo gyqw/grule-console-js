@@ -1,29 +1,48 @@
 import RowAction from "./RowAction";
+import Col from "./Col";
 
 // 352.js
 export default class M352 {
     constructor(t) {
-        var n = this;
-        return r.complexTable = t, r.conditionCol = n, r.conditionCol.width = 200, r.variableCategoryList = [], r.parameterList = [], r.init(t), r
+        this.complexTable = t;
+        this.conditionCol = new Col();
+        this.conditionCol.width = 200;
+        this.variableCategoryList = [];
+        this.parameterList = [];
+        this.init(this);
+        return this;
     }
 
     init(t) {
         this.td.css("width", "200px");
         var e = $('<div><i class="glyphicon glyphicon-filter"/></div>');
-        this.td.append(e), this.labelContainer = $('<span style="color: #727171">请选择参数或变量</span>'), e.append(this.labelContainer), window._VariableValueArray.push(this), window._ParameterValueArray.push(this), this.initMenu([]), window._uruleEditorVariableLibraries && this.initMenu(window._uruleEditorVariableLibraries), window._uruleEditorParameterLibraries && this.initMenu(window._uruleEditorParameterLibraries, 1)
+        this.td.append(e);
+        this.labelContainer = $('<span style="color: #727171">请选择参数或变量</span>');
+        e.append(this.labelContainer);
+        window._VariableValueArray.push(this);
+        window._ParameterValueArray.push(this);
+        this.initMenu([]);
+        window._uruleEditorVariableLibraries && this.initMenu(window._uruleEditorVariableLibraries);
+        window._uruleEditorParameterLibraries && this.initMenu(window._uruleEditorParameterLibraries, 1);
     }
 
     insertColumn(t, e) {
         var n = new RowAction(t);
-        n.setRefHeaderCell(this), n.setBefore(e), t.addConditionColumn(n), window._setDirty()
+        n.setRefHeaderCell(this);
+        n.setBefore(e);
+        t.addConditionColumn(n);
+        window._setDirty();
     }
 
     deleteColumn(t) {
-        if (t.headerRow.conditionHeaders.length < 2) bootbox.alert("条件列至少要有一列！"); else {
+        if (t.headerRow.conditionHeaders.length < 2) {
+            bootbox.alert("条件列至少要有一列！");
+        } else {
             var e = window._VariableValueArray.indexOf(this);
             e > -1 && window._VariableValueArray.splice(e, 1);
             var n = t.headerRow.conditionHeaders.indexOf(this);
-            t.headerRow.conditionHeaders.splice(n, 1), this.td.remove();
+            t.headerRow.conditionHeaders.splice(n, 1);
+            this.td.remove();
             var r = !0, i = !1, o = void 0;
             try {
                 for (var a, s = t.contentRows[Symbol.iterator](); !(r = (a = s.next()).done); r = !0) {
@@ -37,7 +56,8 @@ export default class M352 {
                             }
                         }
                     } catch (t) {
-                        l = !0, h = t
+                        l = !0;
+                        h = t;
                     } finally {
                         try {
                             !u && p.return && p.return()
@@ -48,7 +68,8 @@ export default class M352 {
                     f && (n = c.conditionCells.indexOf(f), c.conditionCells.splice(n, 1), f.td.remove())
                 }
             } catch (t) {
-                i = !0, o = t
+                i = !0;
+                o = t;
             } finally {
                 try {
                     !r && s.return && s.return()
@@ -78,7 +99,8 @@ export default class M352 {
                         e = e.concat(f)
                     }
                 } catch (t) {
-                    o = !0, a = t
+                    o = !0;
+                    a = t;
                 } finally {
                     try {
                         !i && c.return && c.return()
@@ -87,7 +109,10 @@ export default class M352 {
                     }
                 }
                 r.variables = e
-            } else n.labelContainer.css("font-weight", "normal"), r.variables = t.variables || [];
+            } else {
+                n.labelContainer.css("font-weight", "normal");
+                r.variables = t.variables || [];
+            }
             r.refreshConditionCellVariableMenus(t.variables)
         }, o = [];
         e ? (this.parameterList = t, o = (o = this.buildVariableMenus(this.variableCategoryList, i)).concat(this.buildParameterMenus(t, i))) : (this.variableCategoryList = t, o = (o = this.buildVariableMenus(t, i)).concat(this.buildParameterMenus(this.parameterList, i)));
@@ -115,7 +140,8 @@ export default class M352 {
                         })
                     }
                 } catch (t) {
-                    u = !0, l = t
+                    u = !0;
+                    l = t;
                 } finally {
                     try {
                         !f && d.return && d.return()
@@ -125,7 +151,8 @@ export default class M352 {
                 }
             }
         } catch (t) {
-            i = !0, o = t
+            i = !0;
+            o = t;
         } finally {
             try {
                 !r && s.return && s.return()
@@ -147,7 +174,9 @@ export default class M352 {
     }
 
     buildMenuConfig(t) {
-        var e = this.complexTable, n = this, r = {
+        var e = this.complexTable;
+        var n = this;
+        var r = {
             menuItems: [{
                 label: "插入条件列",
                 icon: "glyphicon glyphicon-filter",

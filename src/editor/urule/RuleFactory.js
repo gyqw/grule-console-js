@@ -13,7 +13,6 @@ import {saveNewVersion} from "../../Utils";
             return;
         }
         var saveButton = '<div class="btn-group btn-group-sm navbar-btn" style="margin-top:0;margin-bottom: 0" role="group" aria-label="...">' +
-            '<button id="saveButton" type="button" class="btn btn-default navbar-btn" ><i class="icon-save"/> 保存</button>' +
             '<button id="saveButtonNewVersion" type="button" class="btn btn-default navbar-btn" ><i class="icon-save"/> 保存新版本</button>' +
             '</div>';
         var toolbarHtml = `<nav class="navbar navbar-default" style="margin: 5px">
@@ -99,16 +98,11 @@ import {saveNewVersion} from "../../Utils";
             self.configParameterDialog.open();
         });
 
-        $("#saveButton").click(function () {
-            save(false);
-        });
-
-        $("#saveButtonNewVersion").click(function () {
+        const saveButtonNewVersion = $("#saveButtonNewVersion");
+        saveButtonNewVersion.click(function () {
             save(true);
         });
-
-        $("#saveButton").addClass("disabled");
-        $("#saveButtonNewVersion").addClass("disabled");
+        saveButtonNewVersion.addClass("disabled");
 
         var remarkContainer = $("<div style='margin: 5px;padding: 5px;'></div>");
         this.append(remarkContainer);
@@ -140,7 +134,7 @@ import {saveNewVersion} from "../../Utils";
         });
 
         function save(newVersion) {
-            if ($("#saveButton").hasClass("disabled")) {
+            if (saveButtonNewVersion.hasClass("disabled")) {
                 return false;
             }
             var xml = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>";
@@ -191,10 +185,8 @@ import {saveNewVersion} from "../../Utils";
             }
             self._dirty = true;
             window._dirty = true;
-            $("#saveButton").html("<i class='rf rf-save'></i> *保存");
-            $("#saveButton").removeClass("disabled");
-            $("#saveButtonNewVersion").html("<i class='rf rf-savenewversion'></i> *保存新版本");
-            $("#saveButtonNewVersion").removeClass("disabled");
+            saveButtonNewVersion.html("<i class='rf rf-savenewversion'/> *保存新版本");
+            saveButtonNewVersion.removeClass("disabled");
         };
 
         function cancelDirty() {
@@ -203,10 +195,8 @@ import {saveNewVersion} from "../../Utils";
             }
             self._dirty = false;
             window._dirty = false;
-            $("#saveButton").html("<i class='rf rf-save'></i> 保存");
-            $("#saveButton").addClass("disabled");
-            $("#saveButtonNewVersion").html("<i class='rf rf-savenewversion'></i> 保存新版本");
-            $("#saveButtonNewVersion").addClass("disabled");
+            saveButtonNewVersion.html("<i class='rf rf-savenewversion'/> 保存新版本");
+            saveButtonNewVersion.addClass("disabled");
         }
 
         function _addRule(data) {
