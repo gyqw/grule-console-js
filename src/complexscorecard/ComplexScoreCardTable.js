@@ -23,7 +23,6 @@ export default class ComplexScoreCardTable {
                 <div>
                     <div>
                         <div class="btn-group btn-group-sm navbar-btn" style="margin-top:5px;margin-bottom: 0;margin-left: 5px">
-                            <button id="saveButton" type="button" class="btn btn-default btn-sm" ><i class="rf rf-save" style="font-size: 14px"/> 保存</button>
                             <button id="saveButtonNewVersion" type="button" class="btn btn-default btn-sm" ><i class="rf rf-savenewversion" style="font-size: 14px"/> 保存新版本</button>
                             <div class="btn-group btn-group-sm navbar-btn" style="margin-top:3px;margin-bottom: 0;margin-left: 5px" >
                                 <button id="addCriteriaButton" type="button" class="btn btn-default btn-sm"><i class="glyphicon glyphicon-plus" style="font-size: 16px"/> 添加条件行</button>

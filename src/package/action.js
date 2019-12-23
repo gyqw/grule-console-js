@@ -2,6 +2,7 @@
  * Created by jacky on 2016/6/17.
  */
 import {formatDate} from '../Utils.js';
+import {saveNewVersion} from "../Utils";
 
 export const LOAD_MASTER_COMPLETED = 'load_master_completed';
 export const LOAD_SLAVE_COMPLETE = 'load_slave_completed';
@@ -71,21 +72,13 @@ export function saveData(data, newVersion, project) {
     });
     xml += '</res-packages>';
     xml = encodeURIComponent(xml);
-    $.ajax({
-        url: window._server + '/packageeditor/saveResourcePackages',
-        type: 'POST',
-        data: {xml, project, newVersion},
-        success: function () {
-            bootbox.alert('保存成功!')
-        },
-        error: function (req) {
-            if (req.status === 401) {
-                alert("权限不足，不能进行此操作.");
-            } else {
-                alert('服务端错误，操作失败!');
-            }
-        }
+
+    const url = window._server + '/packageeditor/saveResourcePackages';
+    let postData = {xml, project, newVersion};
+    saveNewVersion(url, postData, function () {
+        bootbox.alert('保存成功!')
     });
+
     return {type: SAVE_COMPLETED};
 }
 

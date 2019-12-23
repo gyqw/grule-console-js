@@ -166,7 +166,6 @@ import {saveNewVersion} from "../../Utils";
             let postData = {content: xml, file, newVersion};
             const url = window._server + '/common/saveFile';
             if (newVersion) {
-                // todo
                 saveNewVersion(url, postData, function () {
                     cancelDirty();
                     window.location.reload();

@@ -114,13 +114,13 @@ class PackageEditor extends Component {
                                         create: true,
                                         title: '添加知识包'
                                     });
-                                }}><i className="glyphicon glyphicon-plus-sign"></i> 添加包
+                                }}><i className="glyphicon glyphicon-plus-sign"/> 添加包
                                 </button>
                             </div>
                             <div className="btn-group btn-group-sm" style={{margin: '2px'}}>
                                 <button className="btn btn-success" type="button" onClick={(e) => {
-                                    dispatch(action.save(false, project))
-                                }}><i className="glyphicon glyphicon-floppy-disk"></i> 保存
+                                    dispatch(action.save(true, project))
+                                }}><i className="glyphicon glyphicon-floppy-disk"/> 保存新版本
                                 </button>
                             </div>
                             <div className="btn-group btn-group-sm" style={{margin: '2px'}}>
@@ -147,7 +147,7 @@ class PackageEditor extends Component {
                                         bootbox.alert('请先选择一个知识包！');
                                     }
 
-                                }}><i className="glyphicon glyphicon-cloud-upload"></i> 发布当前知识包
+                                }}><i className="glyphicon glyphicon-cloud-upload"/> 发布当前知识包
                                 </button>
                                 <button className="btn btn-danger" type="button" onClick={() => {
                                     if (this.currentPackage) {
@@ -157,7 +157,7 @@ class PackageEditor extends Component {
                                     } else {
                                         bootbox.alert('请先选择一个知识包！');
                                     }
-                                }}><i className="glyphicon glyphicon-flash"></i> 仿真测试
+                                }}><i className="glyphicon glyphicon-flash"/> 仿真测试
                                 </button>
                             </div>
                         </div>
@@ -168,7 +168,7 @@ class PackageEditor extends Component {
                             setTimeout(function () {
                                 dispatch(action.loadSlaveData(rowData));
                             }, 100);
-                        }}></Grid>
+                        }}/>
                     </div>
                     <div>
                         <div style={{margin: '2px'}}>
@@ -182,12 +182,12 @@ class PackageEditor extends Component {
                                     } else {
                                         bootbox.alert('请先选择一个知识包！');
                                     }
-                                }}><i className="fa fa-plus-square"></i> 添加文件
+                                }}><i className="fa fa-plus-square"/> 添加文件
                                 </button>
                             </div>
                         </div>
                         <Grid headers={slaveGridHeaders} dispatch={dispatch} operationConfig={slaveGridOperationCol}
-                              rows={masterRowData.resourceItems || []}></Grid>
+                              rows={masterRowData.resourceItems || []}/>
                     </div>
                 </Splitter>
             </div>

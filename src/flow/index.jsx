@@ -18,10 +18,11 @@ import ForkTool from './ForkTool.js';
 import JoinTool from './JoinTool.js';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {Event, MsgBox} from 'flowdesigner';
+import {Event} from 'flowdesigner';
 import KnowledgeTreeDialog from '../components/dialog/component/KnowledgeTreeDialog.jsx';
 import * as event from '../components/componentEvent.js';
-import {ajaxSave, getParameter} from '../Utils.js';
+import {getParameter} from '../Utils.js';
+import {saveNewVersion} from "../Utils";
 
 
 $(document).ready(function () {
@@ -29,26 +30,7 @@ $(document).ready(function () {
     const designer = new RuleFlowDesigner(containerId);
     const file = getParameter('file');
     designer.addButton({
-        icon: '<i class="rf rf-save"></i>',
-        tip: '保存',
-        click: function () {
-            event.eventEmitter.emit(event.SHOW_LOADING, "数据保存中");
-            const content = designer.toXML();
-            if (!content) {
-                event.eventEmitter.emit(event.HIDE_LOADING);
-                return;
-            }
-
-            let postData = {content, file, newVersion: false};
-            const url = window._server + '/common/saveFile';
-            ajaxSave(url, postData, function () {
-                event.eventEmitter.emit(event.HIDE_LOADING);
-                MsgBox.alert('保存成功');
-            });
-        }
-    });
-    designer.addButton({
-        icon: '<i class="rf rf-savenewversion"></i>',
+        icon: '<i class="rf rf-savenewversion"/>',
         tip: '保存为新版本',
         click: function () {
             event.eventEmitter.emit(event.SHOW_LOADING, "数据保存中");
@@ -60,14 +42,8 @@ $(document).ready(function () {
 
             let postData = {content, file, newVersion: true};
             const url = window._server + '/common/saveFile';
-            bootbox.prompt("请输入新版本描述.", function (versionComment) {
-                if (!versionComment) {
-                    return;
-                }
-                postData.versionComment = versionComment;
-                ajaxSave(url, postData, function () {
-                    event.eventEmitter.emit(event.HIDE_LOADING);
-                })
+            saveNewVersion(url, postData, function () {
+                event.eventEmitter.emit(event.HIDE_LOADING);
             });
         }
     });
