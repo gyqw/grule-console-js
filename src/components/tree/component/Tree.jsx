@@ -19,10 +19,12 @@ class Tree extends Component {
         }
     }
 }
+
 Tree.defaultProps = {expandLevel: 3};
 
 function selector(state) {
     let data = state.data;
     return {data};
 }
+
 export default connect(selector)(Tree);

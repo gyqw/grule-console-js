@@ -29,11 +29,11 @@ $(document).ready(function () {
     event.eventEmitter.on(event.CHANGE_CLASSIFY, classify => {
         window._classify = classify;
         if (classify) {
-            $('#__classify_display').html('<i class="rf rf-check"></i> 分类展示');
+            $('#__classify_display').html('<i class="rf rf-check"/> 分类展示');
             $('#__no_classify_display').html('&nbsp;&nbsp;&nbsp;&nbsp;集中展示');
         } else {
             $('#__classify_display').html('&nbsp;&nbsp;&nbsp;&nbsp;分类展示');
-            $('#__no_classify_display').html('<i class="rf rf-check"></i> 集中展示');
+            $('#__no_classify_display').html('<i class="rf rf-check"/> 集中展示');
         }
     });
     event.eventEmitter.on(event.PROJECT_LIST_CHANGE, projectNames => {
@@ -49,8 +49,8 @@ $(document).ready(function () {
         });
         $('#_show_all_projects_i').addClass('rf rf-check');
         for (let name of projectNames) {
-            const newLi = $(`<li class="p_${name}"></li>`),
-                link = $(`<a href="###" style="margin-left: 22px"><i></i> ${name}</a>`);
+            const newLi = $(`<li class="p_${name}"/>`),
+                link = $(`<a href="###" style="margin-left: 22px"><i/> ${name}</a>`);
             newLi.append(link);
             menu.append(newLi);
 

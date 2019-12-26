@@ -345,7 +345,7 @@ export function buildType(fileType) {
         case"scc":
             type = "复杂评分卡";
             break;
-        case "知识包":
+        case "rp":
             type = 'package';
             break;
     }
@@ -455,6 +455,22 @@ function buildData(data, level) {
         case "resourcePackage":
             data._icon = Styles.frameStyle.getResourcePackageIcon();
             data._style = Styles.frameStyle.getResourcePackageIconStyle();
+            data.contextMenu = [
+                {
+                    name: '查看源码',
+                    icon: 'rf rf-code',
+                    click: function (data, dispatch) {
+                        seeFileSource(data);
+                    }
+                },
+                {
+                    name: '查看版本信息',
+                    icon: 'rf rf-version',
+                    click: function (data, dispatch) {
+                        seeFileVersions(data);
+                    }
+                }
+            ];
             data.editorPath = "/package-editor.html";
             break;
         case "lib":

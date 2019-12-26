@@ -41,7 +41,7 @@ class TreeItem extends Component {
         const data = this.props.data;
         const name = data.name;
         let isFile = false;
-        if (name.indexOf(".") > -1 || name === "ul" || name === '知识包') {
+        if (name.indexOf(".") > -1 || name === "ul" || name === 'rp') {
             isFile = true;
         }
         return isFile;
@@ -87,7 +87,7 @@ class TreeItem extends Component {
                     <span id={spanId}>
                         <i className='rf rf-minus' style={{marginRight: "2px"}}/>
                         <i className={data._icon} style={data._style}/> <a href='#'
-                                                                              style={data._style}> {data.name}</a>
+                                                                           style={data._style}> {data.name}</a>
                         <sup><i title={data.lock ? data.lockInfo : ''}
                                 className={data.lock ? 'rf rf-lock' : ''}/></sup>
                     </span>
@@ -101,11 +101,18 @@ class TreeItem extends Component {
                 <li>
                     <span id={spanId} onClick={(e) => {
                         if (isFile) {
-                            const url = '.' + data.editorPath + "?file=" + data.fullPath;
+                            let url = '.' + data.editorPath + "?file=" + data.fullPath;
+                            let fullPath = data.fullPath;
+                            if (data.type === 'resourcePackage') {
+                                const packageName = data.fullPath.split("/")[1];
+                                url = '.' + data.editorPath + "?file=" + packageName + '.rp';
+                                fullPath = packageName;
+                            }
+
                             event.eventEmitter.emit(event.TREE_NODE_CLICK, {
                                 id: data.id,
                                 name: data.name,
-                                fullPath: data.fullPath,
+                                fullPath: fullPath,
                                 path: url,
                                 active: true
                             });
@@ -114,7 +121,7 @@ class TreeItem extends Component {
                         }
                     }}>
                         <i className={data._icon} style={data._style}/> <a href='#'
-                                                                              style={data._style}> {data.name}</a>
+                                                                           style={data._style}> {data.name}</a>
                         <sup><i title={data.lock ? data.lockInfo : ''}
                                 className={data.lock ? 'rf rf-lock' : ''}/></sup>
                     </span>
@@ -123,5 +130,6 @@ class TreeItem extends Component {
             );
         }
     }
-};
+}
+
 export default TreeItem;

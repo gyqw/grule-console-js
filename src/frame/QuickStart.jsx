@@ -27,27 +27,27 @@ export default class QuickStart extends Component {
                     </tr>
                     <tr>
                         <td>向导式决策集</td>
-                        <td><i className="glyphicon glyphicon-ok" style={{fontSize: '20px', color: 'green'}}></i></td>
+                        <td><i className="glyphicon glyphicon-ok" style={{fontSize: '20px', color: 'green'}}/></td>
                     </tr>
                     <tr>
                         <td>脚本式决策集</td>
-                        <td><i className="glyphicon glyphicon-ok" style={{fontSize: '20px', color: 'green'}}></i></td>
+                        <td><i className="glyphicon glyphicon-ok" style={{fontSize: '20px', color: 'green'}}/></td>
                     </tr>
                     <tr>
                         <td>决策树</td>
-                        <td><i className="glyphicon glyphicon-ok" style={{fontSize: '20px', color: 'green'}}></i></td>
+                        <td><i className="glyphicon glyphicon-ok" style={{fontSize: '20px', color: 'green'}}/></td>
                     </tr>
                     <tr>
                         <td>决策流</td>
-                        <td><i className="glyphicon glyphicon-ok" style={{fontSize: '20px', color: 'green'}}></i></td>
+                        <td><i className="glyphicon glyphicon-ok" style={{fontSize: '20px', color: 'green'}}/></td>
                     </tr>
                     <tr>
                         <td>决策表</td>
-                        <td><i className="glyphicon glyphicon-ok" style={{fontSize: '20px', color: 'green'}}></i></td>
+                        <td><i className="glyphicon glyphicon-ok" style={{fontSize: '20px', color: 'green'}}/></td>
                     </tr>
                     <tr>
                         <td>交叉决策表</td>
-                        <td><i className="glyphicon glyphicon-ok" style={{fontSize: '20px', color: 'green'}}></i></td>
+                        <td><i className="glyphicon glyphicon-ok" style={{fontSize: '20px', color: 'green'}}/></td>
                     </tr>
                     </tbody>
                 </table>
