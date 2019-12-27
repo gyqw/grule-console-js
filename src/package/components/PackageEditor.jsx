@@ -124,6 +124,21 @@ class PackageEditor extends Component {
                                 </button>
                             </div>
                             <div className="btn-group btn-group-sm" style={{margin: '2px'}}>
+                                <button className="btn btn-info" type="button" onClick={(e) => {
+                                    const projectArray = project.split(':');
+                                    if (projectArray.length !== 2) {
+                                        bootbox.alert("请先新建版本");
+                                        return
+                                    }
+                                    // const ce = window.parent.componentEvent;
+                                    // ce.eventEmitter.emit(ce.SHOW_LOADING);
+                                    action.startApprovalProcess(projectArray[0], projectArray[1], function (result) {
+                                        bootbox.alert("发起审批成功");
+                                    })
+                                }}><i className="glyphicon glyphicon-send"/> 发起审批
+                                </button>
+                            </div>
+                            <div className="btn-group btn-group-sm" style={{margin: '2px'}}>
                                 <button className="btn btn-warning" type="button" onClick={() => {
                                     if (this.currentPackage && this.currentPackage.resourceItems && this.currentPackage.resourceItems.length > 0) {
                                         let files = '', i = 0;

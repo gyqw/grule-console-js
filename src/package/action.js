@@ -123,6 +123,23 @@ export function loadMasterData(project) {
     }
 }
 
+export function startApprovalProcess(project, version, callback) {
+    var url = window._server + "/common/startApprovalProcess";
+    $.ajax({
+        url,
+        type: 'POST',
+        data: {project, version},
+        success: function (result) {
+            callback(result);
+        },
+        error: function () {
+            // const ce = window.parent.componentEvent;
+            // ce.eventEmitter.emit(ce.HIDE_LOADING);
+            alert('发起审批流程失败!');
+        }
+    })
+}
+
 export function loadSimulatorCategoryData(files, callback) {
     var url = window._server + "/packageeditor/loadForTestVariableCategories";
     $.ajax({
@@ -156,12 +173,11 @@ export function loadFlows(files, callback) {
             alert('加载决策流信息失败.');
         }
     });
-};
-
+}
 
 export function loadSlaveData(masterData) {
     return {type: LOAD_SLAVE_COMPLETE, masterRowData: masterData};
-};
+}
 
 export function doTest(files, data, callback) {
     var url = window._server + "/packageeditor/doTest";
