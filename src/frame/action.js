@@ -471,7 +471,7 @@ function buildData(data, level) {
                     }
                 }
             ];
-            data.editorPath = "/package-editor.html";
+            data.editorPath = "/html/package-editor.html";
             break;
         case "lib":
             data._icon = Styles.frameStyle.getLibIcon();
@@ -482,25 +482,25 @@ function buildData(data, level) {
             data._icon = Styles.frameStyle.getActionIcon();
             data._style = Styles.frameStyle.getActionIconStyle();
             data.contextMenu = buildFileContextMenu();
-            data.editorPath = "/action-editor.html";
+            data.editorPath = "/html/action-editor.html";
             break;
         case "parameter":
             data._icon = Styles.frameStyle.getParameterIcon();
             data._style = Styles.frameStyle.getParameterIconStyle();
             data.contextMenu = buildFileContextMenu();
-            data.editorPath = "/parameter-editor.html";
+            data.editorPath = "/html/parameter-editor.html";
             break;
         case "constant":
             data._icon = Styles.frameStyle.getConstantIcon();
             data._style = Styles.frameStyle.getConstantIconStyle();
             data.contextMenu = buildFileContextMenu();
-            data.editorPath = "/constant-editor.html";
+            data.editorPath = "/html/constant-editor.html";
             break;
         case "variable":
             data._icon = Styles.frameStyle.getVariableIcon();
             data._style = Styles.frameStyle.getVariableIconStyle();
             data.contextMenu = buildFileContextMenu();
-            data.editorPath = "/variable-editor.html";
+            data.editorPath = "/html/variable-editor.html";
             break;
         case "ruleLib":
             data._icon = Styles.frameStyle.getRuleLibIcon();
@@ -638,43 +638,43 @@ function buildData(data, level) {
             let menus = buildFileContextMenu();
             menus.splice(0, 1);
             data.contextMenu = menus;
-            data.editorPath = "/ul-editor.html";
+            data.editorPath = "/html/ul-editor.html";
             break;
         case "decisionTable":
             data._icon = Styles.frameStyle.getDecisionTableIcon();
             data._style = Styles.frameStyle.getDecisionTableIconStyle();
             data.contextMenu = buildFileContextMenu();
-            data.editorPath = "/decision-table-editor.html";
+            data.editorPath = "/html/decision-table-editor.html";
             break;
         case "scriptDecisionTable":
             data._icon = Styles.frameStyle.getScriptDecisionTableIcon();
             data._style = Styles.frameStyle.getScriptDecisionTableIconStyle();
             data.contextMenu = buildFileContextMenu();
-            data.editorPath = "/script-decision-table-editor.html";
+            data.editorPath = "/html/script-decision-table-editor.html";
             break;
         case "decisionTree":
             data._icon = Styles.frameStyle.getDecisionTreeIcon();
             data._style = Styles.frameStyle.getDecisionTreeIconStyle();
             data.contextMenu = buildFileContextMenu();
-            data.editorPath = "/decision-tree-editor.html";
+            data.editorPath = "/html/decision-tree-editor.html";
             break;
         case "flow":
             data._icon = Styles.frameStyle.getFlowIcon();
             data._style = Styles.frameStyle.getFlowIconStyle();
             data.contextMenu = buildFileContextMenu();
-            data.editorPath = "/rule-flow-designer.html";
+            data.editorPath = "/html/rule-flow-designer.html";
             break;
         case "scorecard":
             data._icon = Styles.frameStyle.getScorecardIcon();
             data._style = Styles.frameStyle.getScorecardIconStyle();
             data.contextMenu = buildFileContextMenu();
-            data.editorPath = "/score-card-editor.html";
+            data.editorPath = "/html/score-card-editor.html";
             break;
         case"complexscorecard":
             data._icon = Styles.frameStyle.getComplexScorecardIcon();
             data._style = Styles.frameStyle.getComplexScorecardIconStyle();
             data.contextMenu = buildFileContextMenu();
-            data.editorPath = "/complexscorecard-editor.html";
+            data.editorPath = "/html/complexscorecard-editor.html";
             break;
     }
     var children = data.children;
