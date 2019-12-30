@@ -45,7 +45,7 @@ module.exports = {
             }
         ]),
         new HtmlWebpackPlugin({
-            filename: 'html/index.html',
+            filename: 'index.html',
             template: 'html/frame.html',
             chunks: ["frame"]
         }),
