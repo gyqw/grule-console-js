@@ -58,11 +58,11 @@ export default class VersionListDialog extends Component {
                             <td>{formatDate(row.createDate, 'yyyy-MM-dd HH:mm:ss')}</td>
                             <td>
                                 <button type="button" className="btn btn-link" style={{padding: '0'}} onClick={() => {
-                                    let url = window._server + data.editorPath + "?file=" + data.fullPath + ':' + row.name;
+                                    let url = '.' + data.editorPath + "?file=" + data.fullPath + ':' + row.name;
                                     let fullPath = data.fullPath + ':' + row.name;
                                     if (data.type === 'resourcePackage') {
                                         const packageName = data.fullPath.split("/")[1];
-                                        url = window._server + data.editorPath + "?file=" + packageName + '.rp:' + row.name;
+                                        url = '.' + data.editorPath + "?file=" + packageName + '.rp:' + row.name;
                                         fullPath = packageName;
                                     }
 

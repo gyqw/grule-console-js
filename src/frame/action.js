@@ -384,7 +384,7 @@ function buildData(data, level) {
             data._icon = Styles.frameStyle.getRuleIcon();
             data._style = Styles.frameStyle.getRuleIconStyle();
             data.contextMenu = buildFileContextMenu();
-            data.editorPath = "/ruleset-editor.html";
+            data.editorPath = "/html/ruleset-editor.html";
             break;
         case "project":
             data._icon = Styles.frameStyle.getProjectIcon();
