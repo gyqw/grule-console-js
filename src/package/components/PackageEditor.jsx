@@ -127,7 +127,7 @@ class PackageEditor extends Component {
                                 <button className="btn btn-info" type="button" onClick={(e) => {
                                     const projectArray = project.split(':');
                                     if (projectArray.length !== 2) {
-                                        bootbox.alert("请先新建版本");
+                                        bootbox.alert("请先打开带版本的知识包文件,再进行发起审批操作");
                                         return
                                     }
                                     // const ce = window.parent.componentEvent;
