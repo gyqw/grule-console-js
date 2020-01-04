@@ -15,6 +15,14 @@ export function getParameter(name) {
     return null;
 }
 
+export function buildProjectNameFromFile(file) {
+    if (file.startsWith('/')) {
+        file = file.substring(1);
+        const pos = file.indexOf("/");
+        return file.substring(0, pos);
+    }
+}
+
 export function ajaxSave(url, parameters, callback) {
     $.ajax({
         type: 'POST',
