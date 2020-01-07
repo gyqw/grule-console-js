@@ -15,6 +15,14 @@ export function getParameter(name) {
     return null;
 }
 
+export function buildProjectNameFromFile(file) {
+    if (file.startsWith('/')) {
+        file = file.substring(1);
+        const pos = file.indexOf("/");
+        return file.substring(0, pos);
+    }
+}
+
 export function ajaxSave(url, parameters, callback) {
     $.ajax({
         type: 'POST',
@@ -80,9 +88,9 @@ export function saveNewVersion(url, postData, cb) {
                 label: '保存',
                 className: 'btn-primary',
                 callback: function () {
-                    const versionComment = $('#version-comment-input').val();
-                    const beforeComment = $('#before-comment-textarea').val();
-                    const afterComment = $('#after-comment-textarea').val();
+                    let versionComment = $('#version-comment-input').val();
+                    let beforeComment = $('#before-comment-textarea').val();
+                    let afterComment = $('#after-comment-textarea').val();
 
                     if (!versionComment) {
                         return;

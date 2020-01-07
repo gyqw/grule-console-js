@@ -167,16 +167,12 @@ export default class RuleFlowDesigner extends FlowDesigner {
             }
             debugGroup.append(debugSelect);
             debugSelect.change(function () {
-                if ($(this).val() === 'true') {
-                    _this.debug = true;
-                } else {
-                    _this.debug = false;
-                }
+                _this.debug = $(this).val() === 'true';
             });
             g.append(debugGroup);
 
             const libGroup = $('<div class="form-group"><label>库文件</label></div>');
-            const addButton = $(`<span style="float: right;"><button type="button" class="btn btn-info"><i class="glyphicon glyphicon-plus"></i> 添加</button></span>`);
+            const addButton = $(`<span style="float: right;"><button type="button" class="btn btn-info"><i class="glyphicon glyphicon-plus"/> 添加</button></span>`);
             libGroup.append(addButton);
             addButton.click(function () {
                 event.eventEmitter.emit(event.OPEN_KNOWLEDGE_TREE_DIALOG, {
@@ -211,7 +207,7 @@ export default class RuleFlowDesigner extends FlowDesigner {
                             <td style="text-align: center">${extCName}</td>
                         </tr>`);
                         importLibs.push(fullFileName);
-                        const delCol = $('<td style="text-align: center"></td>');
+                        const delCol = $('<td style="text-align: center"/>');
                         newRow.append(delCol);
                         const delButton = $(`<div class="btn btn-link" style="padding: 0">删除</div>`);
                         delCol.append(delButton);

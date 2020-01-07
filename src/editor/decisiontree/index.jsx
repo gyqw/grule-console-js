@@ -45,8 +45,12 @@ import DecisionTree from './new/DecisionTree.js';
 import KnowledgeTreeDialog from '../../components/dialog/component/KnowledgeTreeDialog.jsx';
 import React from 'react';
 import ReactDOM from 'react-dom';
+import {buildProjectNameFromFile, getParameter} from "../../Utils";
 
 $(document).ready(function () {
+    const file = getParameter('file');
+    window._project = buildProjectNameFromFile(file);
+
     ReactDOM.render(
         <KnowledgeTreeDialog/>,
         document.getElementById('dialogContainer')

@@ -64,7 +64,7 @@ export default class KnowledgeTreeDialog extends Component {
                 <div>
                     <input type="text" className="form-control resSearchText" placeholder="请输入要查询的文件名..."
                            style={{display: 'inline-block', width: '220px'}}/>
-                    <a href="###" onClick={this.search.bind(this)} style={{margin: '6px', fontSize: '16px'}}><i
+                    <a href="#" onClick={this.search.bind(this)} style={{margin: '6px', fontSize: '16px'}}><i
                         className="glyphicon glyphicon-search"/></a>
                 </div>
                 <CommonTree data={this.state.data} selectDir={this.props.selectDir}/>

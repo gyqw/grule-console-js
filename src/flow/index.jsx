@@ -21,7 +21,7 @@ import ReactDOM from 'react-dom';
 import {Event} from 'flowdesigner';
 import KnowledgeTreeDialog from '../components/dialog/component/KnowledgeTreeDialog.jsx';
 import * as event from '../components/componentEvent.js';
-import {getParameter} from '../Utils.js';
+import {buildProjectNameFromFile, getParameter} from '../Utils.js';
 import {saveNewVersion} from "../Utils";
 
 
@@ -29,6 +29,8 @@ $(document).ready(function () {
     const containerId = 'container';
     const designer = new RuleFlowDesigner(containerId);
     const file = getParameter('file');
+    window._project = buildProjectNameFromFile(file);
+
     designer.addButton({
         icon: '<i class="rf rf-savenewversion"/>',
         tip: '保存为新版本',

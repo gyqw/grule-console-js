@@ -14,8 +14,9 @@ import * as action from './action.js';
 
 $(document).ready(function () {
     const store = createStore(reducer, applyMiddleware(thunk));
-    const project = _getParameter("file");
+    const project = _getParameter("file").replace('.rp', '');
     store.dispatch(action.loadMasterData(project));
+    store.dispatch(action.loadPackageConfig(project));
     ReactDOM.render(
         <Provider store={store}>
             <PackageEditor project={project}/>
