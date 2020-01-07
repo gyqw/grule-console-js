@@ -44,7 +44,7 @@ import '../editor/urule/ConfigParameterDialog.js';
 import '../editor/urule/ConfigVariableDialog.js';
 import '../editor/urule/RuleProperty.js';
 
-import {ajaxSave, getParameter} from '../Utils.js';
+import {ajaxSave, buildProjectNameFromFile, getParameter} from '../Utils.js';
 
 import KnowledgeTreeDialog from '../components/dialog/component/KnowledgeTreeDialog.jsx';
 
@@ -54,6 +54,7 @@ $(document).ready(function (e) {
         alert("未指定文件.");
         return;
     }
+    window._project = buildProjectNameFromFile(file);
 
     const toolbarContainer = $("#toolbarContainer");
     const toolbar = $(`<div class="btn-toolbar" style="border: solid 1px #d0d0d0;padding:5px;margin:3px;border-radius: 5px;background: #fdfdfd"></div>`);

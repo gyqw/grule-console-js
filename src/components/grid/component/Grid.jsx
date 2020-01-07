@@ -12,7 +12,6 @@ class Grid extends Component {
     }
 
     onFilter(colIndex, e) {
-        console.log(e.key);
         if (e.key !== 'Enter') {
             return;
         }

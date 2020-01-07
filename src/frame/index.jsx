@@ -224,7 +224,7 @@ $(document).ready(function () {
                                 <ul className="dropdown-menu" id="__authority_config_menu">
                                     <li>
                                         <a href="#" onClick={function (e) {
-                                            const url = window._server + '/permission';
+                                            const url = './html/permission-config-editor.html';
                                             componentEvent.eventEmitter.emit(componentEvent.TREE_NODE_CLICK, {
                                                 id: 'security_config_',
                                                 name: '资源权限配置',

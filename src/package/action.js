@@ -6,6 +6,7 @@ import {saveNewVersion} from "../Utils";
 
 export const LOAD_MASTER_COMPLETED = 'load_master_completed';
 export const LOAD_SLAVE_COMPLETE = 'load_slave_completed';
+export const LOAD_PACKAGE_CONFIG_COMPLETE = 'load_package_config_completed';
 export const ADD_MASTER = 'add_master';
 export const UPDATE_MASTER = 'update_master';
 export const DEL_MASTER = 'del_master';
@@ -123,6 +124,23 @@ export function loadMasterData(project) {
     }
 }
 
+export function loadPackageConfig(project) {
+    return function (dispatch) {
+        var url = window._server + "/packageeditor/loadPackageConfig";
+        $.ajax({
+            url,
+            type: 'POST',
+            data: {project},
+            success: function (data) {
+                dispatch({type: LOAD_PACKAGE_CONFIG_COMPLETE, config: data});
+            },
+            error: function () {
+                alert("加载数据失败.");
+            }
+        });
+    }
+}
+
 export function startApprovalProcess(project, version, callback) {
     var url = window._server + "/common/startApprovalProcess";
     $.ajax({
@@ -130,7 +148,11 @@ export function startApprovalProcess(project, version, callback) {
         type: 'POST',
         data: {project, version},
         success: function (result) {
-            callback(result);
+            if (result.status) {
+                callback(result);
+            } else {
+                alert(result.message);
+            }
         },
         error: function () {
             // const ce = window.parent.componentEvent;

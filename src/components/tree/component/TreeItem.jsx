@@ -106,7 +106,7 @@ class TreeItem extends Component {
                             if (data.type === 'resourcePackage') {
                                 const packageName = data.fullPath.split("/")[1];
                                 url = '.' + data.editorPath + "?file=" + packageName + '.rp';
-                                fullPath = packageName;
+                                fullPath = '/' + packageName;
                             }
 
                             event.eventEmitter.emit(event.TREE_NODE_CLICK, {

@@ -20,7 +20,7 @@ import ChildListDialog from '../../components/grid/component/ChildListDialog.jsx
 
 class PackageEditor extends Component {
     render() {
-        const {masterData, masterRowData, dispatch, project} = this.props, _this = this;
+        const {masterData, masterRowData, dispatch, project, packageConfig} = this.props, _this = this;
         const masterGridHeaders = [
             {id: 'm-id', name: 'id', label: '编码', filterable: true},
             {id: 'm-name', name: 'name', label: '名称', filterable: true, width: '160px'},
@@ -127,7 +127,7 @@ class PackageEditor extends Component {
                                 <button className="btn btn-info" type="button" onClick={(e) => {
                                     const projectArray = project.split(':');
                                     if (projectArray.length !== 2) {
-                                        bootbox.alert("请先新建版本");
+                                        bootbox.alert("请先打开带版本的知识包文件,再进行发起审批操作");
                                         return
                                     }
                                     // const ce = window.parent.componentEvent;
@@ -175,6 +175,9 @@ class PackageEditor extends Component {
                                 }}><i className="glyphicon glyphicon-flash"/> 仿真测试
                                 </button>
                             </div>
+                            <div className="btn-group btn-group-sm" style={{margin: '2px'}}>
+                                <kbd>使用中版本: {packageConfig.version}</kbd>
+                            </div>
                         </div>
 
                         <Grid headers={masterGridHeaders} dispatch={dispatch} rows={masterData}
@@ -211,7 +214,11 @@ class PackageEditor extends Component {
 }
 
 function select(state) {
-    return {masterData: state.master.data || [], masterRowData: state.slave.data || {}};
+    return {
+        masterData: state.master.data || [],
+        masterRowData: state.slave.data || {},
+        packageConfig: state.config.data || {}
+    };
 }
 
 export default connect(select)(PackageEditor);
