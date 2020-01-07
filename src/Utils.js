@@ -88,9 +88,9 @@ export function saveNewVersion(url, postData, cb) {
                 label: '保存',
                 className: 'btn-primary',
                 callback: function () {
-                    const versionComment = $('#version-comment-input').val();
-                    const beforeComment = $('#before-comment-textarea').val();
-                    const afterComment = $('#after-comment-textarea').val();
+                    let versionComment = $('#version-comment-input').val();
+                    let beforeComment = $('#before-comment-textarea').val();
+                    let afterComment = $('#after-comment-textarea').val();
 
                     if (!versionComment) {
                         return;

@@ -467,6 +467,7 @@ function buildData(data, level) {
                     name: '查看版本信息',
                     icon: 'rf rf-version',
                     click: function (data, dispatch) {
+                        data['rpp'] = data['fullPath'].split('/')[1];
                         seeFileVersions(data);
                     }
                 }
@@ -1134,7 +1135,7 @@ function seeFileVersions(data) {
     $.ajax({
         url,
         type: 'POST',
-        data: {path: data.fullPath},
+        data: {path: data.fullPath, project: data['rpp']},
         success: function (list) {
             event.eventEmitter.emit(event.OPEN_FILE_VERSION_DIALOG, {list, data});
         },

@@ -6,6 +6,7 @@ import {saveNewVersion} from "../Utils";
 
 export const LOAD_MASTER_COMPLETED = 'load_master_completed';
 export const LOAD_SLAVE_COMPLETE = 'load_slave_completed';
+export const LOAD_PACKAGE_CONFIG_COMPLETE = 'load_slave_completed';
 export const ADD_MASTER = 'add_master';
 export const UPDATE_MASTER = 'update_master';
 export const DEL_MASTER = 'del_master';
@@ -115,6 +116,23 @@ export function loadMasterData(project) {
             data: {project},
             success: function (data) {
                 dispatch({type: LOAD_MASTER_COMPLETED, masterData: data});
+            },
+            error: function () {
+                alert("加载数据失败.");
+            }
+        });
+    }
+}
+
+export function loadPackageConfig(project) {
+    return function (dispatch) {
+        var url = window._server + "/packageeditor/loadPackageConfig";
+        $.ajax({
+            url,
+            type: 'POST',
+            data: {project},
+            success: function (data) {
+                dispatch({type: LOAD_PACKAGE_CONFIG_COMPLETE, config: data});
             },
             error: function () {
                 alert("加载数据失败.");

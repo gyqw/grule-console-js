@@ -20,7 +20,7 @@ import ChildListDialog from '../../components/grid/component/ChildListDialog.jsx
 
 class PackageEditor extends Component {
     render() {
-        const {masterData, masterRowData, dispatch, project} = this.props, _this = this;
+        const {masterData, masterRowData, dispatch, project, packageConfig} = this.props, _this = this;
         const masterGridHeaders = [
             {id: 'm-id', name: 'id', label: '编码', filterable: true},
             {id: 'm-name', name: 'name', label: '名称', filterable: true, width: '160px'},
@@ -175,6 +175,9 @@ class PackageEditor extends Component {
                                 }}><i className="glyphicon glyphicon-flash"/> 仿真测试
                                 </button>
                             </div>
+                            <div className="btn-group btn-group-sm" style={{margin: '2px'}}>
+                                <kbd>使用中版本: {packageConfig.version}</kbd>
+                            </div>
                         </div>
 
                         <Grid headers={masterGridHeaders} dispatch={dispatch} rows={masterData}
@@ -211,7 +214,12 @@ class PackageEditor extends Component {
 }
 
 function select(state) {
-    return {masterData: state.master.data || [], masterRowData: state.slave.data || {}};
+    console.log(state)
+    return {
+        masterData: state.master.data || [],
+        masterRowData: state.slave.data || {},
+        packageConfig: state.config.data || {}
+    };
 }
 
 export default connect(select)(PackageEditor);
