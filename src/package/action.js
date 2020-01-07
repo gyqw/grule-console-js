@@ -148,7 +148,11 @@ export function startApprovalProcess(project, version, callback) {
         type: 'POST',
         data: {project, version},
         success: function (result) {
-            callback(result);
+            if (result.status) {
+                callback(result);
+            } else {
+                alert(result.message);
+            }
         },
         error: function () {
             // const ce = window.parent.componentEvent;
