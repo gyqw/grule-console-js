@@ -6,7 +6,7 @@ import {saveNewVersion} from "../Utils";
 
 export const LOAD_MASTER_COMPLETED = 'load_master_completed';
 export const LOAD_SLAVE_COMPLETE = 'load_slave_completed';
-export const LOAD_PACKAGE_CONFIG_COMPLETE = 'load_slave_completed';
+export const LOAD_PACKAGE_CONFIG_COMPLETE = 'load_package_config_completed';
 export const ADD_MASTER = 'add_master';
 export const UPDATE_MASTER = 'update_master';
 export const DEL_MASTER = 'del_master';
