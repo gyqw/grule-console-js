@@ -17,6 +17,7 @@ export default class FrameTab extends Component {
 
     addTab(newTabData) {
         let data = this.state.data, exist = false, fullPath = this._processFullPath(newTabData.fullPath);
+
         for (let item of data) {
             if (this._processFullPath(item.fullPath) === fullPath) {
                 exist = true;

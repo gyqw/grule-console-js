@@ -74,15 +74,17 @@ export default class VersionListDialog extends Component {
                                 <button type="button" className="btn btn-link" style={{padding: '0'}} onClick={() => {
                                     let url = '.' + data.editorPath + "?file=" + data.fullPath + ':' + row.name;
                                     let fullPath = data.fullPath + ':' + row.name;
+                                    let name = data.name + ':' + row.name;
                                     if (data.type === 'resourcePackage') {
                                         const packageName = data.fullPath.split("/")[1];
                                         url = '.' + data.editorPath + "?file=" + packageName + '.rp:' + row.name;
-                                        fullPath = packageName;
+                                        fullPath = '/' + packageName + ':' + row.name;
+                                        name = data.name;
                                     }
 
                                     const config = {
                                         id: data.id + ':' + row.name,
-                                        name: data.name + ':' + row.name,
+                                        name: name,
                                         fullPath: fullPath,
                                         path: url,
                                         active: true

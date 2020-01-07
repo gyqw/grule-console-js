@@ -214,7 +214,6 @@ class PackageEditor extends Component {
 }
 
 function select(state) {
-    console.log(state)
     return {
         masterData: state.master.data || [],
         masterRowData: state.slave.data || {},

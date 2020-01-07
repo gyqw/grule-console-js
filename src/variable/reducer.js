@@ -11,8 +11,6 @@ function master(state = {}, action) {
             newData.splice(rowIndex, 1);
             return Object.assign({}, state.prototype, {data: newData});
         case ACTIONS.ADD_MASTER:
-            console.log(action);
-            console.log(state);
             var masterName = action.masterName;
             var newData = [...state.data];
             newData.push({name: masterName, clazz: '', type: 'Custom', variables: []});
