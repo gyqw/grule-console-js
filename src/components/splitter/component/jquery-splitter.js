@@ -45,7 +45,7 @@
             panel_2 = panel_1.next().addClass('right_panel');
             cls = 'vsplitter';
         } else if (settings.orientation == 'horizontal') {
-            panel_1 = children.first().addClass('top_panel')
+            panel_1 = children.first().addClass('top_panel');
             panel_2 = panel_1.next().addClass('bottom_panel');
             cls = 'hsplitter';
         }
@@ -203,7 +203,7 @@
             }
             self.position(pos, true);
         });
-        //inital position of splitter
+        // initial position of splitter
         var pos;
         if (settings.orientation == 'vertical') {
             if (pos > width - settings.limit) {
@@ -212,7 +212,7 @@
                 pos = get_position(settings.position);
             }
         } else if (settings.orientation == 'horizontal') {
-            //position = height/2;
+            // position = height/2;
             if (pos > height - settings.limit) {
                 pos = height - settings.limit;
             } else {
