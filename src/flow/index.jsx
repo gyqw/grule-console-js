@@ -22,7 +22,7 @@ import {Event} from 'flowdesigner';
 import KnowledgeTreeDialog from '../components/dialog/component/KnowledgeTreeDialog.jsx';
 import * as event from '../components/componentEvent.js';
 import {buildProjectNameFromFile, getParameter} from '../Utils.js';
-import {saveNewVersion} from "../Utils";
+import {saveNewVersion, ajaxSave} from "../Utils";
 
 
 $(document).ready(function () {
@@ -46,6 +46,26 @@ $(document).ready(function () {
             const url = window._server + '/common/saveFile';
             saveNewVersion(url, postData, function () {
                 event.eventEmitter.emit(event.HIDE_LOADING);
+                bootbox.alert("保存成功");
+            });
+        }
+    });
+    designer.addButton({
+        icon: '<i class="rf rf-save"/>',
+        tip: '保存',
+        click: function () {
+            event.eventEmitter.emit(event.SHOW_LOADING, "数据保存中");
+            const content = designer.toXML();
+            if (!content) {
+                event.eventEmitter.emit(event.HIDE_LOADING);
+                return;
+            }
+
+            let postData = {content, file, newVersion: false};
+            const url = window._server + '/common/saveFile';
+            ajaxSave(url, postData, function () {
+                event.eventEmitter.emit(event.HIDE_LOADING);
+                bootbox.alert("保存成功");
             });
         }
     });

@@ -13,6 +13,7 @@ import {saveNewVersion} from "../../Utils";
             return;
         }
         var saveButton = '<div class="btn-group btn-group-sm navbar-btn" style="margin-top:0;margin-bottom: 0" role="group" aria-label="...">' +
+            '<button id="saveButton" type="button" class="btn btn-default navbar-btn" ><i class="icon-save"/> 保存</button>' +
             '<button id="saveButtonNewVersion" type="button" class="btn btn-default navbar-btn" ><i class="icon-save"/> 保存新版本</button>' +
             '</div>';
         var toolbarHtml = `<nav class="navbar navbar-default" style="margin: 5px">
@@ -103,6 +104,11 @@ import {saveNewVersion} from "../../Utils";
             save(true);
         });
         saveButtonNewVersion.addClass("disabled");
+        const saveButtonNotNew = $("#saveButton");
+        saveButtonNotNew.click(function () {
+            save(false);
+        });
+        saveButtonNotNew.addClass("disabled");
 
         var remarkContainer = $("<div style='margin: 5px;padding: 5px;'></div>");
         this.append(remarkContainer);
@@ -134,7 +140,8 @@ import {saveNewVersion} from "../../Utils";
         });
 
         function save(newVersion) {
-            if (saveButtonNewVersion.hasClass("disabled")) {
+            if (saveButtonNewVersion.hasClass("disabled") ||
+                saveButtonNotNew.hasClass("disabled")) {
                 return false;
             }
             var xml = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>";
@@ -186,6 +193,8 @@ import {saveNewVersion} from "../../Utils";
             window._dirty = true;
             saveButtonNewVersion.html("<i class='rf rf-savenewversion'/> *保存新版本");
             saveButtonNewVersion.removeClass("disabled");
+            saveButtonNotNew.html("<i class='rf rf-save'/> *保存");
+            saveButtonNotNew.removeClass("disabled");
         };
 
         function cancelDirty() {
@@ -196,6 +205,8 @@ import {saveNewVersion} from "../../Utils";
             window._dirty = false;
             saveButtonNewVersion.html("<i class='rf rf-savenewversion'/> 保存新版本");
             saveButtonNewVersion.addClass("disabled");
+            saveButtonNotNew.html("<i class='rf rf-save'/> 保存");
+            saveButtonNotNew.addClass("disabled");
         }
 
         function _addRule(data) {
