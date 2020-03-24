@@ -34,7 +34,7 @@ export default class VersionListDialog extends Component {
     render() {
         const {list, data} = this.state;
         const body = (
-            <table className="table table-bordered table-hover">
+            <table className="table table-bordered table-hover" style={{tableLayout: 'fixed',wordBreak: 'break-all'}}>
                 <thead>
                 <tr>
                     <td style={{width: '80px'}}>版本号</td>

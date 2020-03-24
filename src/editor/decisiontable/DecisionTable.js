@@ -30,6 +30,7 @@ window._setDirty = function () {
         const self = this;
         var saveButton = `<div class="btn-group btn-group-sm navbar-btn" style="margin-top:0;margin-bottom: 0" role="group" aria-label="...">
 								<button id="saveButtonNewVersion" type="button" class="btn btn-default navbar-btn" ><i class="rf rf-savenewversion"/> 保存新版本</button>
+								<button id="saveButton" type="button" class="btn btn-default navbar-btn" ><i class="rf rf-save"/> 保存</button>
 							</div>`;
         var addCriteriaButton = `<button id="addCriteriaButton" type="button" class="btn btn-default btn-sm"><i class="glyphicon glyphicon-plus"/> 添加条件行</button>`;
         var deleteCriteriaButton = `<button id="deleteCriteriaButton" type="button" class="btn btn-default btn-sm"><i class="glyphicon glyphicon-minus"/> 删除条件行</button>`;
@@ -176,9 +177,13 @@ window._setDirty = function () {
         $("#saveButtonNewVersion").click(function () {
             save(true);
         });
+        $("#saveButton").click(function () {
+            save(false);
+        });
 
         function save(newVersion) {
-            if ($("#saveButtonNewVersion").hasClass("disabled")) {
+            if ($("#saveButtonNewVersion").hasClass("disabled") ||
+                $("#saveButton").hasClass("disabled")) {
                 return false;
             }
             let file = getParameter('file'), xml = self.toXml();

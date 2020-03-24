@@ -20,6 +20,7 @@ import ChildListDialog from '../../components/grid/component/ChildListDialog.jsx
 
 class PackageEditor extends Component {
     render() {
+        var containerWidth = $('#container').width();
         const {masterData, masterRowData, dispatch, project, packageConfig} = this.props, _this = this;
         const masterGridHeaders = [
             {id: 'm-id', name: 'id', label: '编码', filterable: true},
@@ -105,7 +106,7 @@ class PackageEditor extends Component {
                 <FlowDialog/>
                 <BatchTestDialog/>
                 <ChildListDialog/>
-                <Splitter orientation='vertical' position='50%'>
+                <Splitter orientation='vertical' position='50%' limit='300'>
                     <div>
                         <div style={{margin: '2px'}}>
                             <div className="btn-group btn-group-sm" style={{margin: '2px'}}>

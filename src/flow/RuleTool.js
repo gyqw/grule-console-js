@@ -73,7 +73,7 @@ export default class RuleTool extends BaseTool {
                 }
                 const pos = fileName.indexOf(".") + 1;
                 const extName = fileName.substring(pos, fileName.length);
-                let editorPath = '/html';
+                let editorPath = './html';
                 if (extName === 'rs.xml') {
                     editorPath += "/ruleset-editor.html";
                 } else if (extName === 'dt.xml') {
