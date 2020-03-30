@@ -158,6 +158,11 @@ export default class DecisionTree {
             _save(true);
         });
         $saveButtonNewVersion.addClass("disabled");
+        var $saveButtonOldVersion = $("#saveButton");
+        $saveButtonOldVersion.click(function () {
+            _save(false);
+        });
+        $saveButtonOldVersion.addClass("disabled");
         _loadDecisionTreeFileData();
 
         function _save(newVersion) {
