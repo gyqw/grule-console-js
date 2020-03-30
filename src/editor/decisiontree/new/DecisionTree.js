@@ -101,6 +101,7 @@ export default class DecisionTree {
         }
 
         var saveButton = `<div class="btn-group btn-group-sm navbar-btn" style="margin-top:0;margin-bottom: 0" role="group" aria-label="...">
+                <button id="saveButton" type="button" class="btn btn-default navbar-btn" ><i class="icon-save"/> 保存</button>
                 <button id="saveButtonNewVersion" type="button" class="btn btn-default navbar-btn" ><i class="rf rf-savenewversion"/> 保存新版本</button>
             </div>`;
         var toolbarHtml = `<nav class="navbar navbar-default" style="margin: 5px">
