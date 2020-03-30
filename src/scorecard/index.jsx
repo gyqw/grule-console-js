@@ -160,12 +160,14 @@ $(document).ready(function (e) {
                     }
                     ajaxSave(url, {content, file, newVersion, versionComment}, function () {
                         cancelDirty();
+                        bootbox.alert("保存成功");
                     });
 
                 });
             } else {
                 ajaxSave(url, {content, file, newVersion}, function () {
                     cancelDirty();
+                    bootbox.alert("保存成功");
                 });
             }
         } catch (error) {

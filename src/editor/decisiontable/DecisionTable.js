@@ -193,10 +193,12 @@ window._setDirty = function () {
             if (newVersion) {
                 saveNewVersion(url, postData, function () {
                     self.resetState();
+                    bootbox.alert('保存成功!');
                 });
             } else {
                 ajaxSave(url, postData, function () {
                     self.resetState();
+                    bootbox.alert('保存成功!');
                 })
             }
         }
