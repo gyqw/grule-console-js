@@ -202,11 +202,12 @@ export default class DecisionTree {
             if (newVersion) {
                 saveNewVersion(url, postData, function () {
                     cancelDirty();
-                    window.location.reload();
+                    bootbox.alert('保存成功!');
                 });
             } else {
                 ajaxSave(url, postData, function () {
                     cancelDirty();
+                    bootbox.alert('保存成功!');
                 });
             }
         }
