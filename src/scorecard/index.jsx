@@ -159,15 +159,17 @@ $(document).ready(function (e) {
                         return;
                     }
                     ajaxSave(url, {content, file, newVersion, versionComment}, function () {
-                        cancelDirty();
-                        bootbox.alert("保存成功");
+                        bootbox.alert("保存成功", function () {
+                            cancelDirty();
+                        });
                     });
 
                 });
             } else {
                 ajaxSave(url, {content, file, newVersion}, function () {
-                    cancelDirty();
-                    bootbox.alert("保存成功");
+                    bootbox.alert("保存成功", function () {
+                        cancelDirty();
+                    });
                 });
             }
         } catch (error) {
